@@ -1,0 +1,56 @@
+//Example fetch using pokemonapi.co
+document.querySelector('#state-search').addEventListener('click', getFetch)
+
+function getFetch(){
+  const stateChoice = document.querySelector('#state').value;
+  const pageNum = 1;
+  const select = document.querySelector('#city');
+
+  const url = `https://api.openbrewerydb.org/breweries?per_page=50&page=${pageNum}&by_state=${stateChoice}`;
+
+  fetch(url)
+      .then(res => res.json()) // parse response as JSON
+      .then(data => {
+        console.log(data)
+
+        //Data is an array of brewery objects. Grab all the brewery object key fields to put into html table
+        const breweryObject = data[0];
+        const breweryProperties = Object.keys(breweryObject);
+
+        console.log(breweryObject);
+        console.log(breweryProperties);
+
+        //extract all the unique cities for the given state input
+        const breweryCities = data.map(
+          (obj) => {
+            return obj.city;
+          }
+        ).filter(
+          (item, index, arr) => {
+            return arr.indexOf(item) == index
+          }
+        );
+
+        for(let i=0; i < breweryCities.length; i++) {
+          const option = document.createElement('option');
+          option.value = breweryCities[i];
+          option.innerText = breweryCities[i];
+          select.appendChild(option); 
+        }
+
+        document.querySelector('#city-starter-option').innerText = 'Select a City';
+
+        console.log(breweryCities);
+        // if( data.media_type === 'image' ){
+        //   document.querySelector('img').src = data.hdurl
+        // }else if(data.media_type === 'video'){
+        //   document.querySelector('iframe').src = data.url
+        // }
+       
+        // document.querySelector('h3').innerText = data.explanation
+      })
+      .catch(err => {
+          console.log(`error ${err}`)
+      });
+}
+
