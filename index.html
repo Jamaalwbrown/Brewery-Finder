@@ -70,11 +70,11 @@
 					<option value="West Virginia">West Virginia</option>
 					<option value="Wisconsin">Wisconsin</option>
 					<option value="Wyoming">Wyoming</option>
-				  </select>
-				  <button type="button" name="button" id="state-search">Search</button>
+				</select>
+				<button type="button" name="button" id="state-search">Search</button>
 		</main>
 
-		<section>
+		<section class = "cities">
 			<label for="city">Enter a City name</label>
 			<select name="city" id="city">
 				<option value="starter" selected="selected" id="city-starter-option">Select a State first</option>
@@ -85,8 +85,16 @@
 		<section>
 			<h2></h2>
 			<img src="img/beer.jpg" alt="">
-			<iframe src="" frameborder="0"></iframe>
-			<h3>Explanation</h3>
+		</section>
+
+		<section>
+			<h2 id="brewery-name"></h2>
+			<table id="brewery-table">
+				<tr>
+					<th>Info Field</th>
+					<th>Info</th>
+				</tr>
+			</table>
 		</section>
 
 		<script type="text/javascript" src="js/main.js"></script>
