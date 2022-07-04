@@ -90,7 +90,6 @@ function getCity(){
 
         document.querySelector('#city-starter-option').innerText = 'Select a City';
 
-        console.log(breweryCities);
         // if( data.media_type === 'image' ){
         //   document.querySelector('img').src = data.hdurl
         // }else if(data.media_type === 'video'){
@@ -104,9 +103,15 @@ function getCity(){
       });
 }
 
-// class Breweryinfo {
-//   constructor(breweryData) {
-//     this.name = breweryData.
-//   }
-// }
+class Breweryinfo {
+  constructor(breweryData) {
+    this.name = breweryData.name,
+    this.type = breweryData.brewery_type,
+    this.street = breweryData.street,
+    this.address2 = breweryData.address_2,
+    this.website = breweryData.website_url,
+    this.state = breweryData.state,
+    this.city = breweryData.city
+  }
+}
 
