@@ -16,6 +16,7 @@
 		<main>
 			<h1>Search for Breweries, Ciders, or Brewpubs</h1>
 
+			<!--Dropdown Selector with all of the states -->
 			<label for="state">Enter a State name</label>
 				<select name="state" id="state">
 					<option value="" selected="selected">Select a State</option>
@@ -74,6 +75,7 @@
 				<button type="button" name="button" id="state-search">Search</button>
 		</main>
 
+		<!--City Selector which will be populated with city options upon the user selecting a state in the State Selector -->
 		<section class = "cities">
 			<label for="city">Enter a City name</label>
 			<select name="city" id="city">
@@ -91,7 +93,7 @@
 			<h2 id="brewery-name"></h2>
 			<table id="brewery-table">
 				<tr>
-					<th>Info Field</th>
+					<th>Name</th>
 					<th>Info</th>
 				</tr>
 				<td>

@@ -66,11 +66,12 @@ function getCity(){
         console.log(data)
 
         //Data is an array of brewery objects. Grab all the brewery object key fields to put into html table
-        const breweryObject = data[0];
+        const breweryObject = data;
         const breweryProperties = Object.keys(breweryObject);
-
-        console.log(breweryObject);
-        console.log(breweryProperties);
+        const list = new BreweryList(data);
+        list.showInfo();
+        // console.log(breweryObject);
+        // console.log(breweryProperties);
 
         
          const breweryNames = data.map(
@@ -78,15 +79,6 @@ function getCity(){
             return obj.name;
           }
         );
-
-   
-        // Put the names for a given state into a table
-        for(let i=0; i < breweryNames.length; i++) {
-          const tableRowName = document.createElement('tr');
-          tableRowName.value = breweryNames[i];
-          tableRowName.innerText = breweryNames[i];
-          table.appendChild(tableRowName); 
-        }
 
         document.querySelector('#city-starter-option').innerText = 'Select a City';
 
@@ -102,6 +94,26 @@ function getCity(){
           console.log(`error ${err}`)
       });
 }
+
+class BreweryList {
+  constructor(listData) {
+    this.breweryList = listData
+  }
+
+  //showInfo will show a list of brewery names along with relevant info (type, address, website, etc)
+  showInfo() {
+    let tableRef = document.getElementById('brewery-table');
+
+    for (let key in this.breweryList) {
+      const tableRowName = document.createElement('tr');
+      tableRowName.value = this.breweryList[key].name;
+      tableRowName.innerText = this.breweryList[key].name;
+      tableRef.appendChild(tableRowName); 
+      console.log(this.breweryList[key].name);
+    }
+  }
+}
+
 
 class Breweryinfo {
   constructor(breweryData) {
