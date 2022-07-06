@@ -1,8 +1,9 @@
 //Example fetch using pokemonapi.co
-document.querySelector('#state-search').addEventListener('click', getState)
+document.querySelector('#state').addEventListener('change', getState)
 document.querySelector('#city-search').addEventListener('click', getCity)
 
 function getState(){
+  console.log('change event fired!!');
   const stateChoice = document.querySelector('#state').value;
   const pageNum = 1;
   const select = document.querySelector('#city');
@@ -36,15 +37,7 @@ function getState(){
         }
 
         document.querySelector('#city-starter-option').innerText = 'Select a City';
-
         console.log(breweryCities);
-        // if( data.media_type === 'image' ){
-        //   document.querySelector('img').src = data.hdurl
-        // }else if(data.media_type === 'video'){
-        //   document.querySelector('iframe').src = data.url
-        // }
-       
-        // document.querySelector('h3').innerText = data.explanation
       })
       .catch(err => {
           console.log(`error ${err}`)
@@ -69,11 +62,11 @@ function getCity(){
         const breweryObject = data;
         const breweryProperties = Object.keys(breweryObject);
         const list = new BreweryList(data);
-        list.showInfo();
+        list.showList();
+
         // console.log(breweryObject);
         // console.log(breweryProperties);
 
-        
          const breweryNames = data.map(
           (obj) => {
             return obj.name;
@@ -81,14 +74,6 @@ function getCity(){
         );
 
         document.querySelector('#city-starter-option').innerText = 'Select a City';
-
-        // if( data.media_type === 'image' ){
-        //   document.querySelector('img').src = data.hdurl
-        // }else if(data.media_type === 'video'){
-        //   document.querySelector('iframe').src = data.url
-        // }
-       
-        // document.querySelector('h3').innerText = data.explanation
       })
       .catch(err => {
           console.log(`error ${err}`)
@@ -100,15 +85,36 @@ class BreweryList {
     this.breweryList = listData
   }
 
-  //showInfo will show a list of brewery names along with relevant info (type, address, website, etc)
-  showInfo() {
+  //showList will show a list of brewery names along with relevant info (type, address, website, etc)
+  showList() {
     let tableRef = document.getElementById('brewery-table');
 
     for (let key in this.breweryList) {
-      const tableRowName = document.createElement('tr');
-      tableRowName.value = this.breweryList[key].name;
-      tableRowName.innerText = this.breweryList[key].name;
-      tableRef.appendChild(tableRowName); 
+
+      //create a new row with 4 cells in our table for name, type, street, and website
+      let newRow = tableRef.insertRow(-1);
+      let newNCell = newRow.insertCell(0);
+      let newTCell = newRow.insertCell(1);
+      let newSCell = newRow.insertCell(2);
+      let newWCell = newRow.insertCell(3);
+
+      //create the text node that will go into our new cells
+      let newNText = document.createTextNode(this.breweryList[key].name);
+      let newTText = document.createTextNode(this.breweryList[key].brewery_type);
+      let newSText = document.createTextNode(this.breweryList[key].street);
+
+      //Create a website link for each brewery in our brewery list
+      let newLink = document.createElement('a');
+      newLink.href = this.breweryList[key].website_url;
+      newLink.title = this.breweryList[key].website_url;
+      newLink.appendChild(document.createTextNode(this.breweryList[key].website_url));
+
+      //create the text that goes into each of our new cells in our new row in our table
+      newNCell.appendChild(newNText);
+      newTCell.appendChild(newTText);
+      newSCell.appendChild(newSText);
+      newWCell.appendChild(newLink);
+ 
       console.log(this.breweryList[key].name);
     }
   }
