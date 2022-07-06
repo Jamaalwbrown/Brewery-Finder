@@ -2,47 +2,105 @@
 document.querySelector('#state').addEventListener('change', getState)
 document.querySelector('#city-search').addEventListener('click', getCity)
 
-function getState(){
-  console.log('change event fired!!');
-  const stateChoice = document.querySelector('#state').value;
-  const pageNum = 1;
-  const select = document.querySelector('#city');
+const limitPerPage=50;
+const apiUrl= "https://api.openbrewerydb.org/breweries";
 
-  const urlState = `https://api.openbrewerydb.org/breweries?per_page=50&page=${pageNum}&by_state=${stateChoice}`;
+async function getBreweries(pageNo = 1, state = 'texas'){
+  const actualUrl = apiUrl + `?per_page=${limitPerPage}&page=${pageNo}&by_state=${state}`;
+
+  let apiResults = await fetch(actualUrl)
+  .then(resp=>{
+  return resp.json();
+  });
+  
+  return apiResults;
+  
+  }
+
+  async function getEntireBreweryList(pageNo = 1, state = 'texas') {
+    const results = await getBreweries(pageNo, state);
+    console.log("Retreiving data from API for page : " + pageNo);
+    if (results.length > 0) {
+      return results.concat(await getEntireBreweryList(pageNo + 1));
+    } else {
+      return results;
+    }
+  }
+
+  async function getState() {
+    console.log('change event fired!!');
+    const stateChoice = document.querySelector('#state').value;
+    const select = document.querySelector('#city');
+    const entireList = await getEntireBreweryList(1 , stateChoice);
+    console.log(entireList);
+
+    // Put the cities for a given state into a list of options the user can select
+    const breweryCities = entireList.map(
+      (obj) => {
+        return obj.city;
+      }
+    ).filter(
+      (item, index, arr) => {
+        return arr.indexOf(item) == index
+      }
+    );
+
+     // Put the cities for a given state into a list of options the user can select
+     for(let i=0; i < breweryCities.length; i++) {
+      const option = document.createElement('option');
+      option.value = breweryCities[i];
+      option.innerText = breweryCities[i];
+      select.appendChild(option); 
+    }
+
+    document.querySelector('#city-starter-option').innerText = 'Select a City';
+    console.log(breweryCities);
+
+  }
+
+
+
+// function getState(){
+//   console.log('change event fired!!');
+//   const stateChoice = document.querySelector('#state').value;
+//   const pageNum = 1;
+//   const select = document.querySelector('#city');
+
+//   const urlState = `https://api.openbrewerydb.org/breweries?per_page=50&page=${pageNum}&by_state=${stateChoice}`;
  
 
-  fetch(urlState)
-      .then(res => res.json()) // parse response as JSON
-      .then(data => {
-        console.log(data)
+//   fetch(urlState)
+//       .then(res => res.json()) // parse response as JSON
+//       .then(data => {
+//         console.log(data)
 
-        //extract all the unique cities for the given state input
-        const breweryCities = data.map(
-          (obj) => {
-            return obj.city;
-          }
-        ).filter(
-          (item, index, arr) => {
-            return arr.indexOf(item) == index
-          }
-        );
+//         //extract all the unique cities for the given state input
+//         const breweryCities = data.map(
+//           (obj) => {
+//             return obj.city;
+//           }
+//         ).filter(
+//           (item, index, arr) => {
+//             return arr.indexOf(item) == index
+//           }
+//         );
 
 
-        // Put the cities for a given state into a list of options the user can select
-        for(let i=0; i < breweryCities.length; i++) {
-          const option = document.createElement('option');
-          option.value = breweryCities[i];
-          option.innerText = breweryCities[i];
-          select.appendChild(option); 
-        }
+//         // Put the cities for a given state into a list of options the user can select
+//         for(let i=0; i < breweryCities.length; i++) {
+//           const option = document.createElement('option');
+//           option.value = breweryCities[i];
+//           option.innerText = breweryCities[i];
+//           select.appendChild(option); 
+//         }
 
-        document.querySelector('#city-starter-option').innerText = 'Select a City';
-        console.log(breweryCities);
-      })
-      .catch(err => {
-          console.log(`error ${err}`)
-      });
-}
+//         document.querySelector('#city-starter-option').innerText = 'Select a City';
+//         console.log(breweryCities);
+//       })
+//       .catch(err => {
+//           console.log(`error ${err}`)
+//       });
+// }
 
 
 function getCity(){
