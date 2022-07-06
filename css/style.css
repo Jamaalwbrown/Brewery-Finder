@@ -12,13 +12,14 @@
 /*******************************************/
 
 body {
-  color: gray;
+  color: #3CBCC3;
   text-align: center;
   font-size: 2em;
   font-family: 'Franklin Gothic Light', 'Arial Narrow', Arial, sans-serif;
   height: 150vh;
-  background: linear-gradient(rgb(59, 3, 124), rgb(86, 48, 131));
+  background: linear-gradient(#1F3044, #0B4141);
   background-repeat: no-repeat;
+  background-attachment: fixed;
   /* border: 2px solid red; */
 }
 
@@ -33,11 +34,24 @@ table {
 }
 
 table, th, td {
-  border: 1px solid;
-  background-color: white;
+  border: 1px solid #F7F4E9;
+  background-color: transparent;
+  color: #F7F4E9;
 }
 
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+a:link {
+  color: white
+}
+
+a:hover {
+  color: #3CBCC3
+}
+
+a:visited {
+  color: #8d1427
+}

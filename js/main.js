@@ -1,4 +1,4 @@
-//Example fetch using pokemonapi.co
+//Event listeners to handle selection of state and city for the app
 document.querySelector('#state').addEventListener('change', getState)
 document.querySelector('#city-search').addEventListener('click', getCity)
 
@@ -88,6 +88,11 @@ class BreweryList {
   //showList will show a list of brewery names along with relevant info (type, address, website, etc)
   showList() {
     let tableRef = document.getElementById('brewery-table');
+    for (let i = 1; i < tableRef.rows.length;)
+    {
+      tableRef.deleteRow(i);
+    }
+
 
     for (let key in this.breweryList) {
 

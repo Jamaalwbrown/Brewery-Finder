@@ -14,8 +14,8 @@
 	<body>
 
 		<main>
-			<h1>Search for Breweries, Ciders, or Brewpubs</h1>
-
+			<h1>Find My Brewery</h1>
+			<h3>Search for breweries in your area! To get started select your state and city</h3>
 			<!--Dropdown Selector with all of the states -->
 			<label for="state">Enter a State name</label>
 				<select name="state" id="state">
@@ -72,7 +72,6 @@
 					<option value="Wisconsin">Wisconsin</option>
 					<option value="Wyoming">Wyoming</option>
 				</select>
-				<button type="button" name="button" id="state-search">Search</button>
 		</main>
 
 		<!--City Selector which will be populated with city options upon the user selecting a state in the State Selector -->
@@ -81,11 +80,14 @@
 			<select name="city" id="city">
 				<option value="starter" selected="selected" id="city-starter-option">Select a State first</option>
 			</select>
+		</section>
+			
+		<section>
 			<button type="button" name="button" id="city-search">Search</button>
 		</section>
 
 		<section>
-			<h2></h2>
+			<h2>Search for Breweries, Cideries, or Brewpubs</h2>
 			<img src="img/beer.jpg" alt="">
 		</section>
 
