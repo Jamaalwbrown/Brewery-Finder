@@ -138,6 +138,8 @@ function getCity(){
       });
 }
 
+
+//Class to hold a list of breweries we retrieve after selecting a city
 class BreweryList {
   constructor(listData) {
     this.breweryList = listData
