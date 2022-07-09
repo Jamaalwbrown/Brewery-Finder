@@ -5,7 +5,7 @@ document.querySelector('#city-search').addEventListener('click', getCity)
 const limitPerPage=50;
 const apiUrl= "https://api.openbrewerydb.org/breweries";
 
-async function getBreweries(pageNo = 1, state = 'texas'){
+async function getBreweries(pageNo = 1, state){
   const actualUrl = apiUrl + `?per_page=${limitPerPage}&page=${pageNo}&by_state=${state}`;
 
   let apiResults = await fetch(actualUrl)
@@ -17,11 +17,11 @@ async function getBreweries(pageNo = 1, state = 'texas'){
   
   }
 
-  async function getEntireBreweryList(pageNo = 1, state = 'texas') {
+  async function getEntireBreweryList(pageNo = 1, state) {
     const results = await getBreweries(pageNo, state);
     console.log("Retreiving data from API for page : " + pageNo);
     if (results.length > 0) {
-      return results.concat(await getEntireBreweryList(pageNo + 1));
+      return results.concat(await getEntireBreweryList(pageNo + 1, state));
     } else {
       return results;
     }
@@ -29,7 +29,9 @@ async function getBreweries(pageNo = 1, state = 'texas'){
 
   async function getState() {
     console.log('change event fired!!');
-    const stateChoice = document.querySelector('#state').value;
+    const stateSelect = document.querySelector('#state');
+    const stateChoice = stateSelect.options[stateSelect.selectedIndex].value.toLowerCase();
+    console.log(stateChoice);
     const select = document.querySelector('#city');
     const entireList = await getEntireBreweryList(1 , stateChoice);
     console.log(entireList);
@@ -44,6 +46,14 @@ async function getBreweries(pageNo = 1, state = 'texas'){
         return arr.indexOf(item) == index
       }
     );
+
+    //If there are options in the the select statement from previous search, get rid of them to replace with new city options
+    const citySelect = document.getElementById("city")
+    for (let i = 1; i < citySelect.length;)
+    {
+      console.log('city option array is:' + citySelect.length);
+      citySelect.remove(1)
+    }
 
      // Put the cities for a given state into a list of options the user can select
      for(let i=0; i < breweryCities.length; i++) {
