@@ -39,6 +39,18 @@ table, th, td {
   color: #F7F4E9;
 }
 
+.search-button {
+  margin: 20px auto;
+}
+
+.search-button > button {
+  background-color:#c59c2d;
+}
+
+.main-image {
+  margin: 20px auto;
+}
+
 
 /******************************************
 /* ADDITIONAL STYLES
