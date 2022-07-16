@@ -51,6 +51,22 @@ table, th, td {
   margin: 20px auto;
 }
 
+.type-section {
+  border: 1px solid #F7F4E9;
+}
+
+/* .list-box {
+  border: 1px solid #F7F4E9;
+} */
+
+.type-list {
+  font-size: 1.5rem;
+  list-style-position: outside;
+  text-align: left;
+  width: 75%;
+  /*Centers the list*/
+  margin: 0 auto;
+}
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -67,3 +83,9 @@ a:hover {
 a:visited {
   color: #8d1427
 }
+
+
+
+/******************************************
+/* MEDIA QUERIES
+/*******************************************/
