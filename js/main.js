@@ -138,12 +138,7 @@ class BreweryList {
       let newSText = document.createTextNode(this.breweryList[key].street);
       let newSTText = document.createTextNode(this.breweryList[key].state);
       let newCText = document.createTextNode(this.breweryList[key].city);
-
-      //Create a website link for each brewery in our brewery list
-      let newLink = document.createElement('a');
-      newLink.href = this.breweryList[key].website_url;
-      newLink.title = this.breweryList[key].website_url;
-      newLink.appendChild(document.createTextNode(this.breweryList[key].website_url));
+      
 
       //create the text that goes into each of our new cells in our new row in our table
       newNCell.appendChild(newNText);
@@ -151,7 +146,20 @@ class BreweryList {
       newSCell.appendChild(newSText);
       newSTCell.appendChild(newSTText);
       newCCell.appendChild(newCText);
+
+     //Create a website link for each brewery in our brewery list
+     if(this.breweryList[key].website_url === null){
+      let newWText = document.createTextNode('Website not available');
+      newWCell.appendChild(newWText);
+    }
+    else {
+      let newLink = document.createElement('a');
+      newLink.href = this.breweryList[key].website_url;
+      newLink.title = this.breweryList[key].website_url;
+      newLink.appendChild(document.createTextNode(this.breweryList[key].website_url));
       newWCell.appendChild(newLink);
+    }
+     
  
       console.log(this.breweryList[key].name);
     }
