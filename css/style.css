@@ -65,7 +65,7 @@ table, th, td {
 } */
 
 .type-list {
-  font-size: 1.5rem;
+  font-size: 1em;
   list-style-position: outside;
   text-align: left;
   width: 75%;
@@ -94,19 +94,30 @@ a:visited {
 /******************************************
 /* MEDIA QUERIES
 /*******************************************/
-@media screen and (max-width: 1330px) {
+@media screen and (min-width: 901px) and (max-width: 1330px) {
   table, th, td {
     font-size: 0.8em;
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 900px) {
-  main {
+  main, .font-list {
     font-size: 0.7rem
   }
 
   table, th, td {
 
     font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main, .font-list {
+    font-size: 0.5rem
+  }
+
+  table, th, td {
+
+    font-size: 0.4rem;
   }
 }
