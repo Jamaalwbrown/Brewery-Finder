@@ -135,7 +135,7 @@ class BreweryList {
       //create the text node that will go into our new cells
       let newNText = document.createTextNode(this.breweryList[key].name);
       let newTText = document.createTextNode(this.breweryList[key].brewery_type);
-      let newSText = document.createTextNode(this.breweryList[key].street);
+      //let newSText = document.createTextNode(this.breweryList[key].street);
       let newSTText = document.createTextNode(this.breweryList[key].state);
       let newCText = document.createTextNode(this.breweryList[key].city);
       
@@ -143,9 +143,16 @@ class BreweryList {
       //create the text that goes into each of our new cells in our new row in our table
       newNCell.appendChild(newNText);
       newTCell.appendChild(newTText);
-      newSCell.appendChild(newSText);
       newSTCell.appendChild(newSTText);
       newCCell.appendChild(newCText);
+
+      if(this.breweryList[key].street === null){
+        let newSText = document.createTextNode('Brewery still in planning stage. Street Address TBD');
+        newSCell.appendChild(newSText);
+      }
+      else {
+        newSCell.appendChild(document.createTextNode(this.breweryList[key].street));
+      }
 
      //Create a website link for each brewery in our brewery list
      if(this.breweryList[key].website_url === null){
