@@ -14,7 +14,7 @@
 body {
   color: #3CBCC3;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-family: 'Franklin Gothic Light', 'Arial Narrow', Arial, sans-serif;
   height: 150vh;
   background: linear-gradient(#1F3044, #0B4141);
@@ -24,8 +24,8 @@ body {
 }
 
 main {
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   /* width: 100%; */
 }
 
@@ -43,6 +43,7 @@ table, th, td {
   border: 1px solid #F7F4E9;
   background-color: transparent;
   color: #F7F4E9;
+  font-size: 1.2rem;
 }
 
 .search-button {
@@ -95,3 +96,24 @@ a:visited {
 /******************************************
 /* MEDIA QUERIES
 /*******************************************/
+@media screen and (max-width: 480px) {
+  main {
+    font-size: 1.2rem
+  }
+
+  table, th, td {
+    max-width: 420px;
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  main {
+    font-size: 1.5rem
+  }
+
+  table, th, td {
+    max-width: 420px;
+    font-size: 1rem;
+  }
+}
