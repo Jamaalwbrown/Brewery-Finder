@@ -14,7 +14,7 @@
 body {
   color: #3CBCC3;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: 'Franklin Gothic Light', 'Arial Narrow', Arial, sans-serif;
   height: 150vh;
   background: linear-gradient(#1F3044, #0B4141);
@@ -24,9 +24,7 @@ body {
 }
 
 main {
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* width: 100%; */
+  font-size: 1em;
 }
 
 img{
@@ -43,7 +41,7 @@ table, th, td {
   border: 1px solid #F7F4E9;
   background-color: transparent;
   color: #F7F4E9;
-  font-size: 1.2rem;
+  font-size: 1em;
 }
 
 .search-button {
@@ -96,24 +94,19 @@ a:visited {
 /******************************************
 /* MEDIA QUERIES
 /*******************************************/
-@media screen and (max-width: 480px) {
-  main {
-    font-size: 1.2rem
-  }
-
+@media screen and (max-width: 1330px) {
   table, th, td {
-    max-width: 420px;
-    font-size: 0.7rem;
+    font-size: 0.8em;
   }
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 900px) {
   main {
-    font-size: 1.5rem
+    font-size: 0.7rem
   }
 
   table, th, td {
-    max-width: 420px;
-    font-size: 1rem;
+
+    font-size: 0.7rem;
   }
 }
