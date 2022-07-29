@@ -56,6 +56,7 @@ async function getBreweries(pageNo = 1, state){
       citySelect.remove(1)
     }
 
+    breweryCities.sort();
      // Put the cities for a given state into a list of options the user can select
      for(let i=0; i < breweryCities.length; i++) {
       const option = document.createElement('option');
