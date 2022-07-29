@@ -121,4 +121,8 @@ a:visited {
     border: 1px solid #f7f7f680;
     font-size: 0.4rem;
   }
+
+  #state, #city, #city-search {
+    color: black
+  }
 }

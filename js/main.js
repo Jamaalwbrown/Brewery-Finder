@@ -84,6 +84,8 @@ function getCity(){
       .then(data => {
         console.log(data)
 
+        alert('Breweries Retrieved!');
+
         //Data is an array of brewery objects. Grab all the brewery object key fields to put into html table
         const breweryObject = data;
         const breweryProperties = Object.keys(breweryObject);
