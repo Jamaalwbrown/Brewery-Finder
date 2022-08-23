@@ -29,10 +29,10 @@ async function getBreweries(pageNo = 1, state){
 
   //getState async function returns the cities for a selected state. It is fired when the select statement is changed to a state
   async function getState() {
-    console.log('change event fired!!');
+   //uncomment this for testing --> console.log('change event fired!!');
     const stateSelect = document.querySelector('#state');
     const stateChoice = stateSelect.options[stateSelect.selectedIndex].value.toLowerCase();
-    console.log(stateChoice);
+    //uncomment this for testing --> console.log(stateChoice);
     const select = document.querySelector('#city');
     const entireList = await getEntireBreweryList(1 , stateChoice);
     console.log(entireList);
