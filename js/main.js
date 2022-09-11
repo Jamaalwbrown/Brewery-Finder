@@ -35,7 +35,7 @@ async function getBreweries(pageNo = 1, state){
     //uncomment this for testing --> console.log(stateChoice);
     const select = document.querySelector('#city');
     const entireList = await getEntireBreweryList(1 , stateChoice);
-    console.log(entireList);
+    //uncomment this for testing --> console.log(entireList);
 
     // Put the cities for a given state into a list of options the user can select
     const breweryCities = entireList.map(
@@ -52,7 +52,7 @@ async function getBreweries(pageNo = 1, state){
     const citySelect = document.getElementById("city")
     for (let i = 1; i < citySelect.length;)
     {
-      console.log('city option array is:' + citySelect.length);
+      //uncomment this for testing --> console.log('city option array is:' + citySelect.length);
       citySelect.remove(1)
     }
 
@@ -66,7 +66,7 @@ async function getBreweries(pageNo = 1, state){
     }
 
     document.querySelector('#city-starter-option').innerText = 'Select a City';
-    console.log(breweryCities);
+    //uncomment this for testing --> console.log(breweryCities);
 
   }
 
